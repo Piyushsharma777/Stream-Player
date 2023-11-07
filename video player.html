@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Player (SP)</title>
+    <style>
+        *{
+            margin: 0;padding: 0;            
+            text-align: center;
+            background: #e10092;
+        }
+        h1{
+            font-size: 45px;
+            background-color: #220046 ;
+             color: white;
+            font-family: VoltePlay-Medium,sans-serif;
+        }
+        span{
+            color: #e10082;
+            background-color: #220046;
+        }
+        
+        .video{
+            background-color: #6b00dd;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        video{
+            border: 1px solid  #220046 transparent!important;
+            border-radius: 22px;
+        }
+        .video video:hover{
+            /* height: 100%;
+            width: 100%; */
+            transition-duration: 0.7s;
+        }  
+    </style>
+</head>
+<body>
+    <div class="header">
+    <h1>Stream <span>Player</span></h1></div>
+    <div class="video">
+    <video src="/Sample Vid.mp4" controls height="100%" width="80%" loop autoplay muted></video> 
+</body>
+</html>
