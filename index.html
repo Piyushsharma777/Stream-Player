@@ -1,80 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stream Player (SP)</title>
     <style>
-        *{
-            margin: 0;padding: 0;            
-            text-align: center;
-            background: #e10092;
-        }
-        h1{
-            font-size: 45px;
-            background-color: #220046 ;
-             color: white;
-            font-family: VoltePlay-Medium,sans-serif;
-        }
-        span{
-            color: #e10082;
-            background-color: #220046;
-        }
-        
-        .video{
-            background-color: #6b00dd;
-            border-radius: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        video{
-            border: 1px solid  #220046 transparent !important;
-            border-radius: 22px;
-            background-color: #6b00dd ;
-        }
-        .video video:hover{
-            /* height: 100%;
-            width: 100%; */
-            transition-duration: 0.7s;
-        }  
-    </style>
-</head>
-<body>
-    <div class="header">
-    <h1>Stream <span>Player</span></h1></div>
-    <div class="video">
-    <video src="Sample Vid.mp4" type="video/x-matroska" controls height="100%" width="80%" loop autoplay muted></video> 
-    </div>
-    <h2 style=" color:white; font-size: 30px;"><center>Drag and Drop video in video box to Play</center></h2>
-    <script>
-        let video=document.querySelector(".video"),
-        src= document.querySelector("video"),
-        word= document.querySelector("h2 center");
-        video.addEventListener("dragover",(e)=>{
-            e.preventDefault();
-            word.innerHTML="Drop to Play video";
-        });
-        video.addEventListener("dragleave",(e)=>{
-            e.preventDefault();
-            word.innerHTML="Drag and Drop video in video box to Play";
-        });
-        video.addEventListener("drop",(e)=>{
-            e.preventDefault();
-            word.innerHTML="video is droped!";
-    const file = e.dataTransfer.files[0];
-            console.log(file)
-            console.log(file.type)
-    if (file && file.type.includes('video')) {
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            src.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-    } else {
-        alert('Please drop a valid video file.');
+      * {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background: #e10092;
+      }
+      h1 {
+        font-size: 45px;
+        background-color: #220046;
+        color: white;
+        font-family: VoltePlay-Medium, sans-serif;
+      }
+      span {
+        color: #e10082;
+        background-color: #220046;
+      }
+
+      .video {
+        background-color: #6b00dd;
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      video {
+        border: 1px solid #220046 transparent !important;
+        border-radius: 22px;
+        background-color: #6b00dd;
+      }
+      .video video:hover {
+        transition-duration: 0.7s;
+      }
+
+      button{
+        width: 200px;
+        height: 45px;
+        border-radius: 10px;
+        font-size: 25px;
+        font-weight: 800;
+        border-style: transparent;
+        background-color: #6b00dd;
+        color: white;
+      }
+      @media screen and (min-width:1400px){
+          video{
+              height: 80dvh;
+          }
     }
-    });
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Stream <span>Player</span></h1>
+    </div>
+    <div class="video">
+      <video
+        src="Sample Vid.mp4"
+        type="video"
+        controls
+        height="100%"
+        width="80%"
+        loop
+        autoplay
+        muted
+      ></video>
+    </div>
+    
+    <h2 style="color: white; font-size: 30px">
+      <center>Drag and Drop video in video box to Play</center>
+    </h2>
+    <button onclick="Fun()">Browser file</button>
+    <input type="file" hidden />
+    <script>
+      let video = document.querySelector(".video"),
+        src = document.querySelector("video"),
+        word = document.querySelector("h2 center"),
+        input = document.querySelector("input"),file;
+      function Fun(){
+        input.click();
+      }
+      input.addEventListener("change", () => {
+        file = input.files[0];
+        playvideo();
+      });
+
+      video.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        word.innerHTML = "Drop to Play video";
+      });
+      video.addEventListener("dragleave", (e) => {
+        e.preventDefault();
+        word.innerHTML = "Drag and Drop video in video box to Play";
+      });
+      video.addEventListener("drop", (e) => {
+        e.preventDefault();
+        word.innerHTML = "video is droped!";
+        file = e.dataTransfer.files[0];
+        playvideo();
+      });
+
+      function  playvideo(){     
+        if (file && file.type.includes("video")) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            src.src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert("Please drop a valid video file.");
+          word.innerHTML = "Drag and Drop video in video box to Play";
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
