@@ -110,6 +110,7 @@
           const reader = new FileReader();
           reader.onload = function (event) {
             src.src = event.target.result;
+             word.innerHTML = "video is droped!";
           };
           reader.readAsDataURL(file);
         } else {
